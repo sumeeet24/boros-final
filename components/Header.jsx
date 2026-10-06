@@ -1,12 +1,8 @@
-import {HeaderMain, HeaderMainMobile } from "@/components";
+import MaisonHeader from "./MaisonHeader";
 
 const Header = () => {
     return (
-        <>
-            <HeaderMain/>
-            <HeaderMainMobile/>
-
-        </>
+        <MaisonHeader />
     );
 };
 

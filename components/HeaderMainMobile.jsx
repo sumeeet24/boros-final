@@ -1,61 +1,109 @@
-import Image from "next/image";
-import React from "react";
-import {HiChevronDown} from "react-icons/hi";
-import EngLanguage from "../public/eng language.png";
-import Link from "next/link";
-import CartHeaderElement from "@/components/CartHeaderElement";
+"use client";
 
-const HeaderMainMobile = async () => {
+import React, { useState } from "react";
+import Link from "next/link";
+import { HiMenu, HiOutlineX } from "react-icons/hi";
+
+const HeaderMainMobile = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="bg-primary h-auto px-10 pt-5 md:hidden max-[400px]:px-5">
-            <div
-                className="flex items-center justify-center gap-x-12 h-[30px] max-[410px]:gap-x-6 max-[390px]:flex-col max-[390px]:gap-y-4 max-[390px]:h-[80px]">
-                <div className="flex items-center gap-x-2">
-                    <Image src={EngLanguage} alt="english flag" className="w-9 max-md:w-7"/>
-                    <p className="text-blackPrimary max-md:text-sm">EN</p>
-                    <HiChevronDown className="text-blackPrimary text-2xl max-md:text-base"/>
-                </div>
-
-                <div className="flex gap-x-5 text-xl items-center max-md:text-base">
-                    <CartHeaderElement/>
-                </div>
-            </div>
-
-            <div className="bg-primary h-[150px] flex flex-col gap-5 justify-center items-center">
-                <Link href={"/"}>
-                    <h2 className="text-blackPrimary text-3xl font-[400]">COSMETICS</h2>
+        <header className="bg-[#FAF8F5] border-b border-[#E8E4DE] px-5 py-4 md:hidden sticky top-0 z-40">
+            <div className="flex items-center justify-between">
+                <Link href="/" className="flex flex-col items-start gap-0.5">
+                    <span className="text-[#1A1A1A] text-xl font-[300] tracking-[0.18em]">
+                        BOROS SYLVANTE
+                    </span>
+                    <span className="text-[#8C733E] text-[9px] tracking-[0.35em] uppercase font-[500]">
+                        OF RARE MATERIALS. BY HAND.
+                    </span>
                 </Link>
 
-                <div className="flex gap-5">
-                    <Link
-                        href="/"
-                        className="text-blackPrimary text-xl font-[400] max-sm:text-base"
-                    >
-                        Home
-                    </Link>
-
-                    <Link
-                        href="/shop"
-                        className="text-blackPrimary text-xl font-[400] max-sm:text-base"
-                    >
-                        Shop
-                    </Link>
-
-                    <Link
-                        href="/about-us"
-                        className="text-blackPrimary text-xl font-[400] max-sm:text-base"
-                    >
-                        About Us
-                    </Link>
-                    <Link
-                        href="/contact"
-                        className="text-blackPrimary text-xl font-[400] max-sm:text-base"
-                    >
-                        Contact Us
-                    </Link>
-                </div>
+                <button
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="p-2 text-[#1A1A1A] text-2xl focus:outline-hidden cursor-pointer"
+                    aria-label="Toggle navigation menu"
+                >
+                    {isMenuOpen ? <HiOutlineX /> : <HiMenu />}
+                </button>
             </div>
+
+            {/* EXPANDABLE MOBILE NAV DRAWER */}
+            {isMenuOpen && (
+                <div className="pt-6 pb-4 border-t border-[#E8E4DE] mt-4 animate-fadeIn">
+                    <nav className="flex flex-col gap-4 text-xs uppercase tracking-[0.22em] font-[400] text-[#1A1A1A]">
+                        <Link 
+                            href="/the-house" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            The House
+                        </Link>
+                        <Link 
+                            href="/the-materials" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            The Materials
+                        </Link>
+                        <Link 
+                            href="/the-collection" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            The Collection
+                        </Link>
+                        <Link 
+                            href="/the-atelier" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            The Atelier
+                        </Link>
+                        <Link 
+                            href="/provenance" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            Provenance
+                        </Link>
+                        <Link 
+                            href="/the-archive" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            The Archive
+                        </Link>
+                        <Link 
+                            href="/journal" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            Journal
+                        </Link>
+                        <Link 
+                            href="/private-appointments" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            Private Appointments
+                        </Link>
+                        <Link 
+                            href="/contact" 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="py-1 hover:text-[#8C733E]"
+                        >
+                            Contact
+                        </Link>
+                    </nav>
+
+                    <div className="pt-6 mt-6 border-t border-[#E8E4DE] text-center">
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-[#8C733E] italic">
+                            For Those Who Notice.
+                        </p>
+                    </div>
+                </div>
+            )}
         </header>
     );
 };

@@ -1,58 +1,51 @@
-import EngLanguage from "../public/eng language.png";
-import {HiChevronDown} from "react-icons/hi";
-import Image from "next/image";
 import Link from "next/link";
-import CartHeaderElement from "./CartHeaderElement";
 
 const HeaderMain = async () => {
-
     return (
-        <header
-            className="bg-primary text-center h-[150px] max-w-7xl mx-auto flex justify-center items-center px-10 max-md:hidden max-[500px]:px-5">
-            <div className="flex items-center gap-x-2">
-                <Image src={EngLanguage} alt="english flag" className="w-9"/>
-                <p className="text-blackPrimary">EN</p>
-                <HiChevronDown className="text-blackPrimary text-2xl"/>
-            </div>
+        <header className="bg-[#FAF8F5] text-center border-b border-[#E8E4DE] py-6 px-8 max-md:hidden">
+            <div className="max-w-7xl mx-auto flex flex-col items-center gap-5">
+                
+                {/* BRAND SIGNATURE */}
+                <Link href="/" className="flex flex-col items-center gap-1 group">
+                    <span className="text-[#1A1A1A] text-3xl sm:text-4xl font-[300] tracking-[0.2em] group-hover:text-[#8C733E] transition-colors">
+                        BOROS SYLVANTE
+                    </span>
+                    <span className="text-[#8C733E] text-[10px] tracking-[0.4em] uppercase font-[500]">
+                        OF RARE MATERIALS. BY HAND.
+                    </span>
+                </Link>
 
-            <div className="flex-1 flex justify-center flex-col items-center gap-6">
-                <Link href="/" className="text-blackPrimary text-4xl font-[400]">COSMETICS</Link>
-
-                <div className="flex gap-5">
-                    <Link
-                        href="/"
-                        className="text-blackPrimary text-xl font-[400] max-[600px]:text-lg"
-                    >
-                        Home
+                {/* ARCHITECTURAL MASTER NAVIGATION */}
+                <nav className="flex items-center gap-7 text-xs uppercase tracking-[0.22em] font-[400] text-[#1A1A1A]/80">
+                    <Link href="/the-house" className="hover:text-[#8C733E] transition-colors">
+                        The House
                     </Link>
-
-                    <Link
-                        href="/shop"
-                        className="text-blackPrimary text-xl font-[400] max-[600px]:text-lg"
-                    >
-                        Shop
+                    <Link href="/the-materials" className="hover:text-[#8C733E] transition-colors">
+                        The Materials
                     </Link>
-
-                    <Link
-                        href="/about-us"
-                        className="text-blackPrimary text-xl font-[400] max-[600px]:text-lg"
-                    >
-                        About Us
+                    <Link href="/the-collection" className="hover:text-[#8C733E] transition-colors">
+                        The Collection
                     </Link>
-                    <Link
-                        href="/contact"
-                        className="text-blackPrimary text-xl font-[400] max-[600px]:text-lg"
-                    >
-                        Contact Us
+                    <Link href="/the-atelier" className="hover:text-[#8C733E] transition-colors">
+                        The Atelier
                     </Link>
-                </div>
-            </div>
+                    <Link href="/provenance" className="hover:text-[#8C733E] transition-colors">
+                        Provenance
+                    </Link>
+                    <Link href="/the-archive" className="hover:text-[#8C733E] transition-colors">
+                        The Archive
+                    </Link>
+                    <Link href="/journal" className="hover:text-[#8C733E] transition-colors">
+                        Journal
+                    </Link>
+                    <Link href="/private-appointments" className="hover:text-[#8C733E] transition-colors">
+                        Appointments
+                    </Link>
+                    <Link href="/contact" className="hover:text-[#8C733E] transition-colors">
+                        Contact
+                    </Link>
+                </nav>
 
-
-            <div className="ml-auto flex gap-x-5 text-xl flex justify-center items-center">
-
-
-                <CartHeaderElement/>
             </div>
         </header>
     );

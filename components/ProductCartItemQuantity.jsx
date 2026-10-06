@@ -1,17 +1,15 @@
 "use client";
-
-import Image from "next/image";
-import React, { useState } from "react";
-import CustomChevronDown from "../public/chevron down 3.svg";
-import CustomChevronUp from "../public/chevron up 3.svg";
+import { useState, useEffect } from "react";
+import { HiMinus, HiPlus } from "react-icons/hi2";
 import { useProductStore } from "@/app/_zustand/store";
 
-const ProductCartItemQuantity = ({
-                                     id,
-                                     startQuantity,
-                                 }) => {
+const ProductCartItemQuantity = ({ id, startQuantity = 1 }) => {
     const [quantity, setQuantity] = useState(startQuantity);
     const { updateCartQuantity, calculateTotals } = useProductStore();
+
+    useEffect(() => {
+        setQuantity(startQuantity);
+    }, [startQuantity]);
 
     const handleIncrement = () => {
         const newQuantity = quantity + 1;
@@ -30,35 +28,29 @@ const ProductCartItemQuantity = ({
     };
 
     return (
-        <div className="flex h-8">
-            <input
-                type="text"
-                className="w-12 h-8 border border-blackPrimary text-lg font-normal text-blackPrimary text-center"
-                value={quantity}
-                onChange={(e) => updateCartQuantity(id, Number(e.target.value))}
-            />
-            <div className="flex flex-col">
-                <button
-                    className="text-white bg-blackPrimary h-1/2 px-5 pt-[0.5px]"
-                    onClick={handleIncrement}
-                >
-                    <Image
-                        src={CustomChevronUp}
-                        alt="Chevron up"
-                        className="text-primary w-4 h-4"
-                    />
-                </button>
-                <button
-                    className="text-white bg-blackPrimary h-1/2 px-5 pb-[0.5px]"
-                    onClick={handleDecrement}
-                >
-                    <Image
-                        src={CustomChevronDown}
-                        alt="Chevron Down"
-                        className="text-primary w-4 h-4"
-                    />
-                </button>
-            </div>
+        <div className="inline-flex items-center border border-[#E8E4DE] bg-white h-8">
+            <button
+                type="button"
+                onClick={handleDecrement}
+                disabled={quantity <= 1}
+                aria-label="Decrease quantity"
+                className="w-7 h-full flex items-center justify-center text-[#6B655C] hover:text-[#1A1A1A] hover:bg-[#FAF8F5] transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            >
+                <HiMinus className="w-3 h-3" />
+            </button>
+            
+            <span className="w-8 text-center text-xs font-mono font-medium text-[#1A1A1A] select-none">
+                {quantity}
+            </span>
+
+            <button
+                type="button"
+                onClick={handleIncrement}
+                aria-label="Increase quantity"
+                className="w-7 h-full flex items-center justify-center text-[#6B655C] hover:text-[#1A1A1A] hover:bg-[#FAF8F5] transition-colors cursor-pointer"
+            >
+                <HiPlus className="w-3 h-3" />
+            </button>
         </div>
     );
 };

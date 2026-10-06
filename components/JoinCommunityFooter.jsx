@@ -1,26 +1,56 @@
-import React from "react";
-import { HiArrowSmallRight } from "react-icons/hi2";
+"use client";
+import { useState } from "react";
+import { HiArrowSmallRight, HiCheck } from "react-icons/hi2";
 
-const JoinCommunityFooter = () => {
+export default function JoinCommunityFooter() {
+    const [email, setEmail] = useState("");
+    const [subscribed, setSubscribed] = useState(false);
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        if (!email) return;
+        setSubscribed(true);
+    };
+
     return (
-        <div className="text-blackPrimary flex flex-col gap-5">
-            <h2 className="text-4xl font-normal max-[500px]:text-xl">Join Our Community!</h2>
-            <p className="text-xl font-normal max-w-[500px] max-[500px]:text-sm">
-                Get access to exclusive codes, educational content and new products
-                before anyone else!
+        <div className="flex flex-col gap-4">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-[#8C733E] font-medium block">
+                Privileged Access
+            </span>
+            <h3 className="text-xl font-light tracking-wide text-[#1A1A1A]">
+                Join The Maison Folio
+            </h3>
+            <p className="text-xs text-[#6B655C] font-light leading-relaxed max-w-sm">
+                Receive private invitations to seasonal handloom collections, limited botanical batch releases, and invitations to private salon viewings.
             </p>
-            <div className="flex">
-                <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="text-blackPrimary bg-white h-12 max-w-[450px] outline-none border-0 indent-5 text-xl max-[500px]:h-9 max-[500px]:text-lg"
-                />
-                <button className="bg-white flex justify-center items-center w-12 h-12 max-[500px]:h-9">
-                    <HiArrowSmallRight className="text-2xl" />
-                </button>
-            </div>
+
+            {subscribed ? (
+                <div className="flex items-center gap-2 text-xs text-emerald-800 bg-[#FAF8F5] border border-emerald-300/60 p-3">
+                    <HiCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                    <span>Welcome to the House folio. A verification letter has been dispatched.</span>
+                </div>
+            ) : (
+                <form onSubmit={handleSubscribe} className="flex max-w-md">
+                    <input
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your electronic mail"
+                        className="bg-white text-xs text-[#1A1A1A] placeholder-[#9C9488] h-11 px-3.5 flex-1 border border-[#E8E4DE] border-r-0 focus:outline-none focus:border-[#8C733E] transition-colors"
+                    />
+                    <button
+                        type="submit"
+                        aria-label="Subscribe to Boros Sylvante Folio"
+                        className="bg-[#1A1A1A] hover:bg-[#8C733E] text-white w-12 h-11 flex items-center justify-center transition-colors duration-300 flex-shrink-0 cursor-pointer"
+                    >
+                        <HiArrowSmallRight className="w-5 h-5" />
+                    </button>
+                </form>
+            )}
+            <p className="text-[10px] text-[#9C9488]">
+                We honor your privacy. Unsubscribe at any time through your client portal.
+            </p>
         </div>
     );
-};
-
-export default JoinCommunityFooter;
+}

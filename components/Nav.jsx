@@ -8,7 +8,7 @@ const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="h-24 bg-primary border-t border-blackPrimary border-1 flex items-center justify-center">
+        <nav className="h-20 bg-primary border-t border-blackPrimary/20 border-1 flex items-center justify-center">
 
             <HiMenu
                 className="text-3xl text-blackPrimary hidden max-[470px]:block cursor-pointer"
@@ -16,11 +16,11 @@ const Nav = () => {
             />
 
             <div className={"md:mr-24"}>
-                <ul className="largeScreenMenu flex gap-6">
+                <ul className="largeScreenMenu flex gap-8">
                     <li>
                         <Link
                             href="/"
-                            className="text-blackPrimary text-xl font-[400] max-[600px]:text-lg"
+                            className="text-blackPrimary text-lg font-[400] tracking-wide hover:text-brandGold transition-colors duration-300"
                         >
                             Home
                         </Link>
@@ -28,25 +28,25 @@ const Nav = () => {
                     <li>
                         <Link
                             href="/shop"
-                            className="text-blackPrimary text-xl font-[400] max-[600px]:text-lg"
+                            className="text-blackPrimary text-lg font-[400] tracking-wide hover:text-brandGold transition-colors duration-300"
                         >
-                            Shop
+                            Shop All
                         </Link>
                     </li>
                     <li>
                         <Link
-                            href="/about"
-                            className="text-blackPrimary text-xl font-[400] max-[600px]:text-lg"
+                            href="/about-us"
+                            className="text-blackPrimary text-lg font-[400] tracking-wide hover:text-brandGold transition-colors duration-300"
                         >
-                            About Us
+                            The House
                         </Link>
                     </li>
                     <li>
                         <Link
-                            href="/about"
-                            className="text-blackPrimary text-xl font-[400] max-[600px]:text-lg"
+                            href="/contact"
+                            className="text-blackPrimary text-lg font-[400] tracking-wide hover:text-brandGold transition-colors duration-300"
                         >
-                            Contact Us
+                            Contact
                         </Link>
                     </li>
                 </ul>
@@ -61,32 +61,32 @@ const Nav = () => {
                     />
                     <ul className="menuMobileUl bg-primary">
                         <li>
-                            <Link href="/" className="text-blackPrimary text-xl font-[400]">
+                            <Link href="/" className="text-blackPrimary text-xl font-[400] tracking-wide">
                                 Home
                             </Link>
                         </li>
                         <li>
                             <Link
                                 href="/shop"
-                                className="text-blackPrimary text-xl font-[400]"
+                                className="text-blackPrimary text-xl font-[400] tracking-wide"
                             >
-                                Shop
+                                Shop All
                             </Link>
                         </li>
                         <li>
                             <Link
-                                href="/about"
-                                className="text-blackPrimary text-xl font-[400]"
+                                href="/about-us"
+                                className="text-blackPrimary text-xl font-[400] tracking-wide"
                             >
-                                About Us
+                                The House
                             </Link>
                         </li>
                         <li>
                             <Link
-                                href="/about"
-                                className="text-blackPrimary text-xl font-[400]"
+                                href="/contact"
+                                className="text-blackPrimary text-xl font-[400] tracking-wide"
                             >
-                                Contact Us
+                                Contact
                             </Link>
                         </li>
                     </ul>

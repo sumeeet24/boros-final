@@ -1,44 +1,41 @@
 "use client";
-
-import Image from "next/image";
-import CustomChevronDown from "../public/chevron down 3.svg";
-import CustomChevronUp from "../public/chevron up 3.svg";
-
+import { HiMinus, HiPlus } from "react-icons/hi2";
 
 const SingleProductQuantityInput = ({ quantity, setQuantity }) => {
+    const handleDecrement = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const handleIncrement = () => {
+        setQuantity(quantity + 1);
+    };
 
     return (
-        <div className="flex h-10">
-            <input
-                type="text"
-                className="w-16 h-10 border border-blackPrimary text-2xl font-normal text-blackPrimary text-center"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-            />
-            <div className="flex flex-col">
-                <button
-                    className="text-white bg-blackPrimary h-1/2 px-5 pt-[0.5px]"
-                    onClick={() => setQuantity(quantity + 1)}
-                >
-                    <Image
-                        src={CustomChevronUp}
-                        alt="Chevron up"
-                        className="text-primary w-5 h-5"
-                    />
-                </button>
-                <button
-                    className="text-white bg-blackPrimary h-1/2 px-5 pb-[0.5px]"
-                    onClick={() => {
-                        quantity === 1 ? true : setQuantity(quantity - 1);
-                    }}
-                >
-                    <Image
-                        src={CustomChevronDown}
-                        alt="Chevron Down"
-                        className="text-primary w-5 h-5"
-                    />
-                </button>
-            </div>
+        <div className="inline-flex items-center border border-[#E8E4DE] bg-white h-11">
+            <button
+                type="button"
+                onClick={handleDecrement}
+                disabled={quantity <= 1}
+                aria-label="Decrease quantity"
+                className="w-10 h-full flex items-center justify-center text-[#6B655C] hover:text-[#1A1A1A] hover:bg-[#FAF8F5] transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            >
+                <HiMinus className="w-3.5 h-3.5" />
+            </button>
+            
+            <span className="w-12 text-center text-sm font-mono font-medium text-[#1A1A1A] select-none">
+                {quantity}
+            </span>
+
+            <button
+                type="button"
+                onClick={handleIncrement}
+                aria-label="Increase quantity"
+                className="w-10 h-full flex items-center justify-center text-[#6B655C] hover:text-[#1A1A1A] hover:bg-[#FAF8F5] transition-colors cursor-pointer"
+            >
+                <HiPlus className="w-3.5 h-3.5" />
+            </button>
         </div>
     );
 };
